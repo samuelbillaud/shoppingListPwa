@@ -1,18 +1,38 @@
 <template>
   <div id="app">
     <header>
-      <span>Vue.js PWA</span>
+      <div>
+        <span>Vue.js PWA</span>
+      </div>
     </header>
     <main>
       <img src="./assets/logo.png" alt="Vue.js PWA">
       <router-view></router-view>
+      <vue-progress-bar></vue-progress-bar>
     </main>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'app'
+  name: 'app',
+  mounted() {
+    setTimeout(() => this.$Progress.finish(), 3000);
+  },
+  created() {
+    this.$Progress.start();
+    this.$router.beforeEach((to, from, next) => {
+      if (to.meta.progress !== undefined) {
+        let meta = to.meta.progress;
+        this.$Progress.parseMeta(meta);
+      }
+      this.$Progress.start();
+      next();
+    });
+    this.$router.afterEach((to, from) => {
+      this.$Progress.finish();
+    });
+  }
 };
 </script>
 
@@ -30,15 +50,23 @@ body {
 
 main {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 76px;
 }
 
 header {
+  position: fixed;
+  top: 1px;
+  width: 100%;
   margin: 0;
+  background-color: #fff;
+  color: #42b983;
+}
+
+header div {
+  width: 90%;
   height: 56px;
-  padding: 0 16px 0 24px;
-  background-color: #35495e;
-  color: #ffffff;
+  margin: auto;
+  border-bottom: 1px solid #ededed;
 }
 
 header span {
