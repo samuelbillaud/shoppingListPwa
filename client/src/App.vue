@@ -17,6 +17,7 @@
 export default {
   name: 'app',
   mounted() {
+    // TODO: Supprimer setTimeout à la fin du dev
     setTimeout(() => this.$Progress.finish(), 3000);
   },
   created() {
