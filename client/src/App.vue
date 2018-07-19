@@ -18,23 +18,23 @@ export default {
   name: 'app',
   mounted() {
     // TODO: Supprimer setTimeout à la fin du dev
-    setTimeout(() => this.$Progress.finish(), 3000);
+    setTimeout(() => this.$Progress.finish(), 3000)
   },
   created() {
-    this.$Progress.start();
+    this.$Progress.start()
     this.$router.beforeEach((to, from, next) => {
       if (to.meta.progress !== undefined) {
-        let meta = to.meta.progress;
-        this.$Progress.parseMeta(meta);
+        let meta = to.meta.progress
+        this.$Progress.parseMeta(meta)
       }
-      this.$Progress.start();
-      next();
-    });
+      this.$Progress.start()
+      next()
+    })
     this.$router.afterEach((to, from) => {
-      this.$Progress.finish();
-    });
+      this.$Progress.finish()
+    })
   }
-};
+}
 </script>
 
 <style>

@@ -22,9 +22,14 @@
 <script>
 export default {
   name: 'hello',
-  data () {
+  data() {
     return {
       msg: 'Welcome to Your Vue.js PWA'
+    }
+  },
+  methods: {
+    test() {
+      console.log('test')
     }
   }
 }
@@ -32,7 +37,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
 }
 
@@ -47,6 +53,6 @@ li {
 }
 
 a {
-  color: #35495E;
+  color: #35495e;
 }
 </style>
